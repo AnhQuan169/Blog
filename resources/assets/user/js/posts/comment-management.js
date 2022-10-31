@@ -66,12 +66,21 @@ $(document).ready(function() {
     function infoUser(item)
     {
         var userId = item.user_id;
+        var userAvatar = item.user.userProfile.userAvatar;
+        var userGender = item.user.userProfile.gender;
 
         return `<div class="d-flex flex-row mb-1">
                     <div class="p-1">
-                        <a href="#">
-                            <img class="rounded-circle" src="/storage/images/avatar/${item.user.userProfile.avatar}">
-                        </a>
+                        <a href="#">` +
+                        (userAvatar ?
+                            `<img class="rounded-circle" src="/storage/images/avatar/${item.user.userProfile.avatar}">`
+                        : (userGender == '1' ?
+                                `<img class="rounded-circle" src="/admin/app-assets/images/avatar-female.png">`
+                            :
+                                `<img class="rounded-circle" src="/admin/app-assets/images/avatar-male.png">`
+                            )
+                        ) +
+                        `</a>
                     </div>
                     <div class="info-comment d-flex ps-2 mb-2">
                         <div class="d-flex flex-column justify-content-center">

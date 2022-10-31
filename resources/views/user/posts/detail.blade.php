@@ -17,7 +17,13 @@
                         <div class="col-xs-12 col-sm-6 col-md-6 d-flex flex-row info-detail-user align-items-center">
                             <div class="col-xs-1 col-sm-2 col-md-2 p-0 image-user">
                                 <a href="#">
-                                    <img class="rounded-circle" src="{{ asset('/storage/images/avatar/'.$post->user->userProfile->avatar) }}">
+                                    @if ($post->user->userProfile->avatar)
+                                        <img class="rounded-circle" src="{{ asset('/storage/images/avatar/'.$post->user->userProfile->avatar) }}">
+                                    @elseif ($post->user->userProfile->gender == \App\Enums\Genre::MALE)
+                                        <img class="rounded-circle" src="/admin/app-assets/images/avatar-male.png">
+                                    @else
+                                        <img class="rounded-circle" src="/admin/app-assets/images/avatar-female.png">
+                                    @endif
                                 </a>
                             </div>
                             <div class="col-xs-11 col-sm-10 col-md-10 detail-user d-flex flex-column justify-content-center">
@@ -119,7 +125,13 @@
                             <div class="row mx-2 my-1 py-2 justify-content-center">
                                 <div class="col-xs-2 col-sm-2 col-md-3 px-1">
                                     <a href="#">
-                                        <img class="rounded-circle" src="{{ asset('/storage/images/avatar/'.$user->userProfile->avatar) }}">
+                                        @if ($user->userProfile->avatar)
+                                            <img class="rounded-circle" src="{{ asset('/storage/images/avatar/'.$user->userProfile->avatar) }}">
+                                        @elseif ($user->userProfile->gender == \App\Enums\Genre::MALE)
+                                            <img class="rounded-circle" src="/admin/app-assets/images/avatar-male.png">
+                                        @else
+                                            <img class="rounded-circle" src="/admin/app-assets/images/avatar-female.png">
+                                        @endif
                                     </a>
                                 </div>
                                 <div class="col-xs-6 col-sm-6 col-md-9 d-flex flex-column justify-content-center">

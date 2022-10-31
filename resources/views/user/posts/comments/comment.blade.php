@@ -3,7 +3,13 @@
     <div class="d-flex flex-row">
         <div class="justify-content-center pt-2 pe-2">
             <a href="#">
-                <img width="60px" id="parent-comment-avatar" class="rounded-circle" src="{{ asset('/storage/images/avatar/'.Auth::guard('user')->user()->userProfile->avatar) }}">
+                @if (Auth::guard('user')->user()->userProfile->avatar)
+                    <img width="60px" id="parent-comment-avatar" class="rounded-circle" src="{{ asset('/storage/images/avatar/'.Auth::guard('user')->user()->userProfile->avatar) }}">
+                @elseif (Auth::guard('user')->user()->userProfile->gender == \App\Enums\Genre::MALE)
+                    <img width="60px" id="parent-comment-avatar" class="rounded-circle" src="/admin/app-assets/images/avatar-male.png">
+                @else
+                    <img width="60px" id="parent-comment-avatar" class="rounded-circle" src="/admin/app-assets/images/avatar-female.png">
+                @endif
             </a>
         </div>
         <input type="hidden" value="{{ Auth::guard('user')->user()->id }}" id="auth-user-id">
